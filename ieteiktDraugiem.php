@@ -3,7 +3,7 @@
 Plugin Name: Ieteikt Draugiem
 Plugin URI: http://www.themer.me/ieteikt-draugiem
 Description: Plugins pievieno katram rakstam "Ieteikt Draugiem" pogu. English: This plugin automatically adds a "Suggest to your Friends" button from Latvian portal draugiem.lv (similiar to Facebook "Like" button).
-Version: 1.1
+Version: 1.2
 Author URI: http://www.themer.me
 */
 
