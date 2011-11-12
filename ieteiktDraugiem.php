@@ -23,7 +23,7 @@ $display = get_post_meta($post->ID, 'ieteikt_draugiem', true);
 $override = get_option('ieteikt-draugiem');
 
 if($override == 1 && $display == 0) $display = 1;
-if($display == 1) return $content.'<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=.'.$title.'.&amp;url='.$url.'&amp;titlePrefix='.$blogName.'"></iframe>';
+if($display == 1) return $content.'<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title=.'.urlencode($title).'.&amp;url='.urlencode($url).'&amp;titlePrefix='.urlencode($blogName).'"></iframe>';
 
 
 }
