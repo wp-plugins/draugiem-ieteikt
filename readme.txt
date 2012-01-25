@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: Methemer
+Contributors: Methemer, neviensnekurnekad
 Donate link: http://www.themer.me/
 Tags: draugiem, draugiem.lv, frype, ieteikt, like, ieteikt draugiem
 Requires at least: 3.0
-Tested up to: 3.2.1
+Tested up to: 3.3.1
 Stable tag: trunk
 
 Plugins pievieno katram rakstam "Ieteikt Draugiem" pogu. (Read "Description for more...")

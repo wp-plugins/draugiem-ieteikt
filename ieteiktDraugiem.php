@@ -3,8 +3,12 @@
 Plugin Name: Ieteikt Draugiem
 Plugin URI: http://www.themer.me/ieteikt-draugiem
 Description: Plugins pievieno katram rakstam "Ieteikt Draugiem" pogu. English: This plugin automatically adds a "Suggest to your Friends" button from Latvian portal draugiem.lv (similiar to Facebook "Like" button).
-Version: 1.2.2
+Version: 1.2.3
 Author URI: http://www.themer.me
+*/
+/*
+Paldies:
+	* neviensnekurnekad - http://wordpress.org/support/profile/neviensnekurnekad
 */
 
 function ieteikt_init()
@@ -23,8 +27,14 @@ $display = get_post_meta($post->ID, 'ieteikt_draugiem', true);
 $override = get_option('ieteikt-draugiem');
 
 if($override == 1 && $display == 0) $display = 1;
-if($display == 1) return $content.'<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.urlencode($title).'&amp;url='.$url.'&amp;titlePrefix='.urlencode($blogName).'"></iframe>';
 
+if($display == 1) {
+return $content.'<iframe height="20" width="84" frameborder="0" src="http://www.draugiem.lv/say/ext/like.php?title='.urlencode($title).'&amp;url='.$url.'&amp;titlePrefix='.urlencode($blogName).'"></iframe>';	
+}
+
+else{
+	return $content;
+}
 
 }
 
@@ -37,17 +47,15 @@ add_filter('the_content', 'ieteikt');
 /*--------------------------------------------------------------------------*/
 
 function ieteikt_post_display()
-{
+{ 
+	global $post;
 	wp_nonce_field(plugin_basename(__FILE__), 'ieteikt_check');
-	$ieteikt = get_post_meta($post_id, 'ieteikt_draugiem', true);
-	if(isset($ieteikt) && !empty($ieteikt) && $ieteikt == 0) $ieteikt = "";
-	else $ieteikt = 'checked="checked"';
+	$ieteiktMetaValue = get_post_meta($post->ID, 'ieteikt_draugiem', true);
 	?>
 	<br />
-	<input type="checkbox" echo <?php echo $ieteikt; ?> name="ieteikt_draugiem"/>]
+	<input type="checkbox" echo <?php checked($ieteiktMetaValue); ?> id="ieteikt_draugiem" name="ieteikt_draugiem"/>
 	<label for="ieteikt_draugiem"> Rādīt <em>"Ieteikt Draugiem"</em> pogu ?<label>
-	
-	<br />
+
 	<?php
 }
 
@@ -108,19 +116,13 @@ if(is_admin())
 		Gribi iespējas ? Pagaidām ir tikai šis ķeksis:<br />
 		<form action="" method="post">			
 		<?php
-		$options = get_option('ieteikt-draugiem');
-		if($options == 1)
-		{
-			$checked = 'checked="checked"';
-		}
-		else $checked = NULL;
-
+		$checkboxValue = get_option('ieteikt-draugiem');
 		?>
 		<form action="" method="action">
 
 		<?php wp_nonce_field('ieteikt-draugiem', '_ieteikt-global'); ?>
 		
-		<input type="checkbox" name="ieteikt_global" <?php echo $checked ?> />
+		<input type="checkbox" id="ieteikt_global" name="ieteikt_global" <?php checked($checkboxValue) ?>/>
 		<label for="ieteikt_global">Rādīt"Ieteikt Draugiem" visur,arī tur, kur neesi atzīmējis "rādīt ieteikt pogu" ?</label>
 		<br /><br />
 		<input class="button-primary" name="Submit" type="submit" value="Aidā" />
@@ -135,15 +137,9 @@ if(is_admin())
 
 }
 /*
-# Ieteikt Settings:
-	* Include in All Posts
-	* Include in All Pages
-	* Add my link (Ieteikt Draugiem / http://www.themer.me / Methemer )
-	* Ieteikt Draugiem - Ieteikt Pluginu (tweet, facebook, draugiem ieteikt)
+# Todo
 	* Say Thank you Link:
 	* Click to tell me if you use it
 	* [ieteikt-draugiem] shortcode
-
-
 */
 ?>
