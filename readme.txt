@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: Methemer, neviensnekurnekad
+Contributors: <a href="http://wordpress.org/support/profile/histograph">Methemer</a>, neviensnekurnekad
 Donate link: http://www.themer.me/
 Tags: draugiem, draugiem.lv, frype, ieteikt, like, ieteikt draugiem
 Requires at least: 3.0
